@@ -6,14 +6,14 @@ import os
 gauth = GoogleAuth()
 
 def authentication():
-    gauth.LoadCredentialsFile("mycreds.txt")
+    gauth.LoadCredentialsFile("mycreds.json")
     if gauth.credentials is None:
         gauth.LocalWebserverAuth()
     elif gauth.access_token_expired:
         gauth.Refresh()
     else:
         gauth.Authorize()
-    gauth.SaveCredentialsFile("mycreds.txt")
+    gauth.SaveCredentialsFile("mycreds.json")
 
 
 def upload_file(file_path, folder=None):
