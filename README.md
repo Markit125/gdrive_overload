@@ -14,4 +14,4 @@ Example of .env:
 
 SAVEPATH = 'D:/МАРК/Torrent_overload/Downloads' \
 QBITTORRENT_PATH = '../qBittorrent/qbittorrent.exe' \
-GDRIVE_FOLDER = '1c4id6My-LmSOZDvTaEHOsf6VpXZSvw0E' \
+GDRIVE_FOLDER = '1c4id6My-LmSOZDvTaEHOsf6VpXZSvw0E'
