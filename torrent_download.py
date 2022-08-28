@@ -3,13 +3,20 @@ import time
 import os
 import glob
 import subprocess
+from dotenv import load_dotenv
+
+load_dotenv()
+USERNAME = os.getenv('USERNAME')
+PASSWORD = os.getenv('PASSWORD')
+SAVEPATH = os.getenv('SAVEPATH')
+QBITTORRENT_PATH = os.getenv('QBITTORRENT_PATH')
 
 # https://www.thepythoncode.com/code/download-torrent-files-in-python
 
 def start_download(filename, qb):
     torrent_file = open(filename, "rb")
 
-    qb.download_from_file(torrent_file, savepath="D:/МАРК/Torrent_downloader/Downloads")
+    qb.download_from_file(torrent_file, savepath=SAVEPATH)
 
     # magnet_link = "magnet:?xt=urn:btih:e334ab9ddd91c10938a7....."
     # qb.download_from_link(magnet_link)
@@ -38,7 +45,7 @@ def get_size_format(b, factor=1024, suffix="B"):
 def download_torrent():
     qb = Client("http://127.0.0.1:8080/")
     print("\nConnected\n")
-    qb.login("admin", "password")
+    qb.login(USERNAME, PASSWORD)
 
     name = glob.glob('*.torrent')[0]
     start_download(name, qb)
@@ -72,7 +79,7 @@ def download_torrent():
 
 
 def main():
-    subprocess.call(['../qBittorrent/qbittorrent.exe'])
+    subprocess.call([QBITTORRENT_PATH])
     download_torrent()
 
 

@@ -1,7 +1,10 @@
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
+GDRIVE_FOLDER = os.getenv('GDRIVE_FOLDER')
 
 gauth = GoogleAuth()
 
@@ -22,7 +25,7 @@ def upload_file(file_path, folder=None):
         drive = GoogleDrive(gauth)
         file_name = file_path.split(os.sep)[-1]
         if folder != None:
-            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}], 'title': f'{filepath.split(os.sep)[-1]}'})
+            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}], 'title': f'{file_path.split(os.sep)[-1]}'})
         else:
             my_file = drive.CreateFile()
         my_file.SetContentFile(file_path)
@@ -53,7 +56,7 @@ def download_file(folder, torrent=False):
 def main():
     # upload_file(file_path='test1.txt')
     # upload_file(file_path='test.txt', folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E')
-    download_file(folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E', torrent=True)
+    download_file(folder=GDRIVE_FOLDER, torrent=True)
 
 
 if __name__ == '__main__':
