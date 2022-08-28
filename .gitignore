@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 client_secrets.json
-mycredits.txt
+mycreds.txt
