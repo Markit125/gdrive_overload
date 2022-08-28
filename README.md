@@ -12,6 +12,6 @@ USERNAME and PASSWORD should be replaced in torrent_download.py file!
 
 Example of .env:
 
-SAVEPATH = 'D:/МАРК/Torrent_overload/Downloads'
-QBITTORRENT_PATH = '../qBittorrent/qbittorrent.exe'
-GDRIVE_FOLDER = '1c4id6My-LmSOZDvTaEHOsf6VpXZSvw0E'
+SAVEPATH = 'D:/МАРК/Torrent_overload/Downloads' \
+QBITTORRENT_PATH = '../qBittorrent/qbittorrent.exe' \
+GDRIVE_FOLDER = '1c4id6My-LmSOZDvTaEHOsf6VpXZSvw0E' \
