@@ -6,8 +6,6 @@ import subprocess
 from dotenv import load_dotenv
 
 load_dotenv()
-USERNAME = os.getenv('USERNAME')
-PASSWORD = os.getenv('PASSWORD')
 SAVEPATH = os.getenv('SAVEPATH')
 QBITTORRENT_PATH = os.getenv('QBITTORRENT_PATH')
 
@@ -45,7 +43,7 @@ def get_size_format(b, factor=1024, suffix="B"):
 def download_torrent():
     qb = Client("http://127.0.0.1:8080/")
     print("\nConnected\n")
-    qb.login(USERNAME, PASSWORD)
+    qb.login('username', 'password')                # USERNAME and PASSWORD requres here!
 
     name = glob.glob('*.torrent')[0]
     start_download(name, qb)

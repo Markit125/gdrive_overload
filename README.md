@@ -8,13 +8,10 @@ Algoritm
 4. Upload them to gdrive
 
 
+USERNAME and PASSWORD should be replaced in torrent_download.py file!
+
 Example of .env:
 
 SAVEPATH = 'D:/МАРК/Torrent_overload/Downloads'
-
-USERNAME = 'admin'
-PASSWORD = 'password'
-
 QBITTORRENT_PATH = '../qBittorrent/qbittorrent.exe'
-
 GDRIVE_FOLDER = '1c4id6My-LmSOZDvTaEHOsf6VpXZSvw0E'

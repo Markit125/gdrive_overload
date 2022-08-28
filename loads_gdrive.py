@@ -25,7 +25,7 @@ def upload_file(file_path, folder=None):
         drive = GoogleDrive(gauth)
         file_name = file_path.split(os.sep)[-1]
         if folder != None:
-            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}], 'title': f'{file_path.split(os.sep)[-1]}'})
+            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}], 'title': f'{file_path.split("/")[-1]}'})
         else:
             my_file = drive.CreateFile()
         my_file.SetContentFile(file_path)
