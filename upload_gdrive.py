@@ -16,16 +16,35 @@ def authentication():
     gauth.SaveCredentialsFile("mycreds.txt")
 
 
-def upload_file(file_path):
+def upload_file(file_path, folder=None):
 
     try:
         drive = GoogleDrive(gauth)
         file_name = file_path.split(os.sep)[-1]
-        my_file = drive.CreateFile({'parents': [{'id': '1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E'}]})
+        if folder != None:
+            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}]})
+        else:
+            my_file = drive.CreateFile()
         my_file.SetContentFile(file_path)
         my_file.Upload()
 
-        return f'\nFile {file_name} was uploaded successfully!'
+        print(f'\nFile {file_name} was uploaded successfully!')
+
+    except Exception as ex:
+        print(ex)
+
+
+def download_file(folder, torrent=False):
+    try:
+        drive = GoogleDrive(gauth)
+        file_list = drive.ListFile({'q': f"'{folder}' in parents and trashed=false"}).GetList()
+
+        for file in file_list:
+            if not ('.torrent' in file['title'] == torrent):
+                continue
+
+            print(f"{file['title']} is downloading")
+            file.GetContentFile(file['title'])
 
     except Exception as ex:
         print(ex)
@@ -33,7 +52,9 @@ def upload_file(file_path):
 
 def main():
     authentication()
-    print(upload_file('test.txt'))
+    upload_file(file_path='test1.txt')
+    upload_file(file_path='test.txt', folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E')
+    download_file(folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E', torrent=True)
 
 
 if __name__ == '__main__':
