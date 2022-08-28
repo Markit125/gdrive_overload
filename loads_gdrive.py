@@ -17,12 +17,12 @@ def authentication():
 
 
 def upload_file(file_path, folder=None):
-
+    authentication()
     try:
         drive = GoogleDrive(gauth)
         file_name = file_path.split(os.sep)[-1]
         if folder != None:
-            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}]})
+            my_file = drive.CreateFile({'parents': [{'id': f'{folder}'}], 'title': f'{filepath.split(os.sep)[-1]}'})
         else:
             my_file = drive.CreateFile()
         my_file.SetContentFile(file_path)
@@ -35,6 +35,7 @@ def upload_file(file_path, folder=None):
 
 
 def download_file(folder, torrent=False):
+    authentication()
     try:
         drive = GoogleDrive(gauth)
         file_list = drive.ListFile({'q': f"'{folder}' in parents and trashed=false"}).GetList()
@@ -43,13 +44,13 @@ def download_file(folder, torrent=False):
             if ('.torrent' in file['title']) == torrent:
                 print(f"{file['title']} is downloading")
                 file.GetContentFile(file['title'])
-
+                return True
+        return False
     except Exception as ex:
         print(ex)
 
 
 def main():
-    authentication()
     # upload_file(file_path='test1.txt')
     # upload_file(file_path='test.txt', folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E')
     download_file(folder='1c4id6My-LmSOZDvTfEHOsf6VpXZSvw0E', torrent=True)
