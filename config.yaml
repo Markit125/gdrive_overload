@@ -3,8 +3,8 @@ my_task:
   # Part 2: Login Information
   client: qbittorrent
   host: http://127.0.0.1:8080
-  username: Markit125
-  password: MarkMark12
+  username: admin
+  password: adminadmin
   # Part 3: Strategies Block (Remove Conditions)
   strategies:
     strategy1:
