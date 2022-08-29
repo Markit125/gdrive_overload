@@ -51,6 +51,7 @@ def main():
                 print(*text[old_length:])
 
                 if 'successfully!' in text[-1]:
+                    os.remove('log.txt')
                     return
 
                 old_length = length
