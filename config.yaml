@@ -1,0 +1,17 @@
+
+my_task:
+  # Part 2: Login Information
+  client: qbittorrent
+  host: http://127.0.0.1:8080
+  username: Markit125
+  password: MarkMark12
+  # Part 3: Strategies Block (Remove Conditions)
+  strategies:
+    strategy1:
+      # Part II: Filters
+      
+      # Part III: Remove Condition
+      remove: progress = 0 or progress = 100
+
+  # Part 4: Decide whether to remove and delete data (optional)
+  delete_data: true

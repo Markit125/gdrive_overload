@@ -31,8 +31,8 @@ def download_log_file(folder):
                 file.GetContentFile(file['title'])
                 return True
         return False
-    except Exception as ex:
-        print(ex)
+    except:
+        pass
 
 
 def main():

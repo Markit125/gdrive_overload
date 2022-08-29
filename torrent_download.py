@@ -76,7 +76,7 @@ def download_torrent():
             break
         time.sleep(15)
 
-    lgd.log_file('Download complited\n')
+    lgd.log_file('Download completed\n')
 
 
 def main():
