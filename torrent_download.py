@@ -4,6 +4,8 @@ import os
 import glob
 import subprocess
 from dotenv import load_dotenv
+import loads_gdrive as lgd
+
 
 load_dotenv()
 SAVEPATH = os.getenv('SAVEPATH')
@@ -42,8 +44,8 @@ def get_size_format(b, factor=1024, suffix="B"):
 
 def download_torrent():
     qb = Client("http://127.0.0.1:8080/")
-    print("\nConnected\n")
-    qb.login('username', 'password')                # USERNAME and PASSWORD requres here!
+    lgd.log_file("\nConnected\n\n")
+    qb.login("Markit125", "MarkMark12")
 
     name = glob.glob('*.torrent')[0]
     start_download(name, qb)
@@ -54,17 +56,18 @@ def download_torrent():
         torrents = qb.torrents()
         counter = len(torrents)
         for torrent in torrents:
-            print(f"Torrent name: {torrent['name']}")
-            print(f"hash: {torrent['hash']}")
-            print(f"Seeds: {torrent['num_seeds']}")
-            print(f"File size: {get_size_format(torrent['total_size'])}")
-            print(f"Download speed: {get_size_format(torrent['dlspeed'])}/s")
-            print(f"Progress: {get_size_format(torrent['downloaded'])} / ", end='')
-            print(f"{get_size_format(torrent['total_size'])}")
+            log = ''
+            log += f"Torrent name: {torrent['name']}\n" \
+            f"hash: {torrent['hash']}\n" \
+            f"Seeds: {torrent['num_seeds']}\n" \
+            f"File size: {get_size_format(torrent['total_size'])}\n" \
+            f"Download speed: {get_size_format(torrent['dlspeed'])}/s\n" \
+            f"Progress: {get_size_format(torrent['downloaded'])} / " \
+            f"{get_size_format(torrent['total_size'])}"
             progress = round(torrent['downloaded'] / torrent['total_size'] * 100, 1)
-            print(f"[{'|' * int(round(progress, 0) / 5)}", end='')
-            print(f"{' ' * int(round(100 - progress, 0) / 5)}] {progress}%")
-            print()
+            log += f"[{'|' * int(round(progress, 0) / 5)}" \
+            f"{' ' * int(round(100 - progress, 0) / 5)}] {progress}%\n\n"
+            lgd.log_file(log)
             if progress >= 100:
                 counter -= 1
             if not counter:
@@ -73,7 +76,7 @@ def download_torrent():
             break
         time.sleep(15)
 
-    print('Download complited')
+    lgd.log_file('Download complited\n')
 
 
 def main():

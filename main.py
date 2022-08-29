@@ -5,6 +5,7 @@ import tarfile
 import subprocess
 import glob
 from dotenv import load_dotenv
+from delete_completed_torrents import del_completed
 
 load_dotenv()
 QBITTORRENT_PATH = os.getenv('QBITTORRENT_PATH')
@@ -13,15 +14,15 @@ QBITTORRENT_PATH = os.getenv('QBITTORRENT_PATH')
 GDRIVE_FOLDER = os.getenv('GDRIVE_FOLDER')
 
 def main():
-    files = os.listdir('Downloads/')
+    files = os.listdir('.')
     for file in files:
         if '.torrent' in file:
-            os.remove(f'Downloads/{file}')
+            os.remove(f'{file}')
 
     files = set(os.listdir('Downloads/'))
 
     if not lgd.download_file(folder=GDRIVE_FOLDER, torrent=True):
-        print('No file')
+        lgd.log_file('No file')
         return
 
     # path to exec qbittorrent file
@@ -38,7 +39,10 @@ def main():
         tar.add(f'Downloads/{new_dir}')
     os.remove(glob.glob('*.torrent')[0])
     lgd.upload_file(file_path=f'Downloads/{new_dir}.tgz', folder=GDRIVE_FOLDER)
+    os.remove('log.txt')
     subprocess.call("TASKKILL /F /IM qbittorrent.exe", shell=True)
+    del_completed()
+    
 
 if __name__ == '__main__':
     main()
