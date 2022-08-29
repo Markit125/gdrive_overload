@@ -8,7 +8,7 @@ Algoritm
 4. Upload them to gdrive
 
 
-USERNAME and PASSWORD should be replaced in torrent_download.py file!
+USERNAME and PASSWORD of qBittorrent should be replaced in torrent_download.py and config.yaml files!
 
 Example of .env:
 
