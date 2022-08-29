@@ -40,9 +40,7 @@ def main():
         
         lgd.upload_file(file_path=f'Downloads/{new_dir}.tgz', folder=GDRIVE_FOLDER)
         os.remove(f'Downloads/{new_dir}')
-        for file in os.listdir('.'):
-            if 'log' in file:
-                os.remove(f'{file}')
+        
                 
     except Exception as ex:
         lgd.log_file(f'\n{ex}')
@@ -50,6 +48,9 @@ def main():
         os.remove(glob.glob('*.torrent')[0])
         subprocess.call("autoremove-torrents -c config.yaml", shell=True)
         subprocess.call("TASKKILL /F /IM qbittorrent.exe", shell=True)
+        for file in os.listdir('.'):
+            if 'log' in file:
+                os.remove(f'{file}')
 
 if __name__ == '__main__':
     main()
