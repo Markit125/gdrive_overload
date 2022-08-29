@@ -27,6 +27,8 @@ def main():
 
         # path to exec qbittorrent file
         subprocess.call([QBITTORRENT_PATH])
+        # os.startfile(QBITTORRENT_PATH)
+
         download_torrent()
         
         new_dir = None
@@ -39,8 +41,6 @@ def main():
             tar.add(f'Downloads/{new_dir}')
         
         lgd.upload_file(file_path=f'Downloads/{new_dir}.tgz', folder=GDRIVE_FOLDER)
-        os.remove(f'Downloads/{new_dir}')
-        
                 
     except Exception as ex:
         lgd.log_file(f'\n{ex}')
