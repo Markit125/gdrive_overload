@@ -52,7 +52,7 @@ def download_torrent():
 
     downd = False
     while True:
-        os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+        # os.system('cls' if os.name in ('nt', 'dos') else 'clear')
         torrents = qb.torrents()
         counter = len(torrents)
         for torrent in torrents:
