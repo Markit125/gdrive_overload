@@ -1,4 +1,6 @@
 # gdrive_overload
+An automation tool for downloading a torrent file (e.g., a Linux distribution) to a remote computer and uploading it to Google Drive, with logging and the ability to track progress via the console.
+
 Needed client_secret.json is file from console.cloud.google.com
 
 Algoritm
