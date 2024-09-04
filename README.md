@@ -3,7 +3,7 @@ An automation tool for downloading a torrent file (e.g., a Linux distribution) t
 
 Needed client_secret.json is file from console.cloud.google.com
 
-Algoritm
+Algorithm
 1. Check gdrive for torrent file
 2. Download torrent file
 3. Download files via qBittorrent
